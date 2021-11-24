@@ -4,16 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="prototype.css">
     <script src="app.js" defer></script>
     <title>Etch A Sketch</title>
 </head>
 <body>
-    <div class="grid" id="container">
+    <h1>Etch A Sketch ✏️</h1>
+    <div class="rectangle"></div>
+    <div class="main">
+        <div class="interface">
+            <div class="grid" id="container"></div>
+            <div class="options">
+                <button id="generate">Generate</button>
+                <button id="clear">Clear</button>
+                <input type="range" id="grid-size" min="16" max="64" value="16" step="16">
+                <span>Grid size: </span>
+            </div>
+        </div>
     </div>
-    <button id="generate">Generate</button>
-    <button id="clear">Clear</button>
-    <input type="range" id="grid-size" min="16" max="64" value="16" step="16">
-    <span>Grid size: </span>
+    <footer>Copyright</footer>
 </body>
 </html>
