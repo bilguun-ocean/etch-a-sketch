@@ -82,7 +82,7 @@ function startHover () {
 
 //change the grid size when slider is moved
 const slider = document.querySelector('#grid-size');
-const output = document.querySelector('span')
+const output = document.querySelector('#output-size')
 slider.addEventListener('input', () => {
     let text = '';
     output.textContent = text //clear the last displayed value when changed into new
@@ -116,6 +116,7 @@ function makeRandom() {
             let r = Math.round(Math.random() * 255);
             let g = Math.round(Math.random() * 255);
             let b = Math.round(Math.random() * 255);
+            item.style.filter = 'brightness(' + 100 + '%)'
             item.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
         })
     })
@@ -123,7 +124,7 @@ function makeRandom() {
 
 //Feature 2: Incrementally darken a color (not just black but an other options too)
 //global variable for brightness //ik it bad idea :(
-let brightness = 95;
+let brightness = 90;
 const darkenButton = document.querySelector('#increment-darken');
 
 darkenButton.addEventListener('click', () => {
@@ -135,6 +136,7 @@ function darkenColor(brightness) {
     const items = document.querySelectorAll('.item')
     items.forEach((item) => {
         item.addEventListener('mouseenter', () => {
+            item.backgroundColor = 'white';
             item.style.filter = 'brightness(' + brightness + '%)';
             brightness -= 10;
             if (brightness < 0  ) {
@@ -155,8 +157,16 @@ function pickColor () {
 
     items.forEach((item) => {
         item.addEventListener('mouseenter', () => {
+            item.style.filter = 'brightness(' + 100 + '%)'
             item.style.backgroundColor = color.value;
         })
     })
 
 }
+
+
+//Debug 2 when page loads, start with default of 16x16 gric and normal hover effect
+window.addEventListener('load', () => {
+    generateGrid();
+    blackHover();
+})

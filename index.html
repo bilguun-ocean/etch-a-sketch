@@ -10,22 +10,21 @@
 </head>
 <body>
     <h1>Etch A Sketch ✏️</h1>
-    <div class="rectangle"></div>
-    <div class="main">
-        <div class="interface">
-            <div class="grid" id="container"></div>
+     <div class="interface">
             <div class="options">
-                <button id="generate">Generate</button>
+                <button id="generate">Change</button>
                 <button id="normal">Normal</button>
                 <button id="random">Rainbow</button>
-                <button id="increment-darken">Darken</button>
+                <button id="increment-darken">Gradual</button>
                 <button id="clear">Clear</button>
                 <input type="range" id="grid-size" min="16" max="64" value="16" step="16">
-                <input type="color" id="choose-color">
-                <span>Grid size: </span>
-            </div>
+                <button><a href="#choose-color">Choose</a></button>
+                <input type="color" id="choose-color"> 
+                <span id = output-size>Grid size: </span>
         </div>
+    <div class="grid" id="container"></div>
     </div>
-    <footer>Copyright</footer>
+    <footer>Copyright © 2021 bilguun-ocean<a class="copyright" href="https://github.com/bilguun-ocean"
+        target="_blank"><img class="logo" src="mylogo.png" alt="water"</footer>
 </body>
 </html>
