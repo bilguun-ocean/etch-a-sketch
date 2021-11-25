@@ -19,6 +19,7 @@ function generateGrid () {
         for (l = 0; l < value; l++){
             const item = document.createElement('div');
             item.classList.add('item');
+            item.style.backgroundColor = 'white';
             container.appendChild(item);
         }
     }
@@ -63,10 +64,13 @@ function gridClass (value) {
 const button = document.querySelector('#generate');
 button.addEventListener('click', () => {
     generateGrid();
-    startHover();
 })
 
-//hover effect for each div
+// black hover effect for each div
+const blackHover = document.querySelector('#normal')
+
+normal.addEventListener('click', startHover)
+
 function startHover () {
     const items = document.querySelectorAll('.item');
     items.forEach((item) => {
@@ -75,8 +79,6 @@ function startHover () {
         })
     })
 }
-
-//add a mouseenter effect that leaves trail which soon dissapears, idea from MDN mouseenter
 
 //change the grid size when slider is moved
 const slider = document.querySelector('#grid-size');
@@ -93,8 +95,68 @@ function clearGrid () {
     const items = document.querySelectorAll('.item')
     items.forEach((item) => {
         item.style.backgroundColor = 'white';
+        item.style.filter = 'brightness(' + 100 + '%)'
     })
 }
 const clearButton = document.querySelector('#clear')
 
 clearButton.addEventListener('click', clearGrid)
+
+//Feature 1: Rainbow trail
+
+const randomButton = document.querySelector('#random');
+
+randomButton.addEventListener('click', makeRandom)
+
+function makeRandom() {
+
+    const items = document.querySelectorAll('.item')
+    items.forEach((item) => {
+        item.addEventListener('mouseenter', () => {
+            let r = Math.round(Math.random() * 255);
+            let g = Math.round(Math.random() * 255);
+            let b = Math.round(Math.random() * 255);
+            item.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+        })
+    })
+}
+
+//Feature 2: Incrementally darken a color (not just black but an other options too)
+//global variable for brightness //ik it bad idea :(
+let brightness = 95;
+const darkenButton = document.querySelector('#increment-darken');
+
+darkenButton.addEventListener('click', () => {
+    darkenColor(brightness);
+
+});
+
+function darkenColor(brightness) {
+    const items = document.querySelectorAll('.item')
+    items.forEach((item) => {
+        item.addEventListener('mouseenter', () => {
+            item.style.filter = 'brightness(' + brightness + '%)';
+            brightness -= 10;
+            if (brightness < 0  ) {
+                brightness = 95;
+            }
+        })
+    })
+}
+//button.style.filter = 'brightness(' + 85 + '%)'
+
+//function for letting a user pick the color:
+const choose = document.querySelector('#choose-color');
+choose.addEventListener('input', pickColor)
+
+function pickColor () {
+    const items = document.querySelectorAll('.item');
+    const color = document.querySelector('#choose-color');
+
+    items.forEach((item) => {
+        item.addEventListener('mouseenter', () => {
+            item.style.backgroundColor = color.value;
+        })
+    })
+
+}
