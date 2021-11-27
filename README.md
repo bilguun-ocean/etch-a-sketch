@@ -1,4 +1,4 @@
-<h1>This is a etch-a-sketch project from The Odin Project's <a href = https://www.theodinproject.com target = "_blank" >Curriculum </a>.</h1>
+<h1>This is a etch-a-sketch project from The Odin Project's <a href = "https://www.theodinproject.com" target = "_blank" >Curriculum </a></h1>
 
 <p>Here i wrote a simple web implementation of a popular toy called "Etch a Sketch". This project was quite challenging and i've </br>
 a lot on how to manipulate the DOM along with CSS and HTML.
@@ -17,4 +17,4 @@ a lot on how to manipulate the DOM along with CSS and HTML.
   <li>Github</li>
 </ul>
 
-<p>Special thanks to the <a href = https://www.theodinproject.com target = "_blank">The Odin Project!</p>
+<p>Special thanks to the <a href = "https://www.theodinproject.com" target = "_blank">The Odin Project!</p>
