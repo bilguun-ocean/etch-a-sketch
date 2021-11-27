@@ -12,15 +12,14 @@
     <h1>Etch A Sketch ✏️</h1>
      <div class="interface">
             <div class="options">
-                <button id="generate">Change</button>
                 <button id="normal">Normal</button>
                 <button id="random">Rainbow</button>
-                <button id="increment-darken">Gradual</button>
+                <button id="christmas">Christmas</button>
+                <button id="eraser">Eraser</button>
                 <button id="clear">Clear</button>
+                <input type="color" id="choose-color" class="color"> 
                 <input type="range" id="grid-size" min="16" max="64" value="16" step="16">
-                <button><a href="#choose-color">Choose</a></button>
-                <input type="color" id="choose-color"> 
-                <span id = output-size>Grid size: </span>
+                <span class="size" id = output-size>Small </span>
         </div>
     <div class="grid" id="container"></div>
     </div>

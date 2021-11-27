@@ -60,16 +60,10 @@ function gridClass (value) {
     }
 }
 
-//button for creating grid
-const button = document.querySelector('#generate');
-button.addEventListener('click', () => {
-    generateGrid();
-})
-
 // black hover effect for each div
-const blackHover = document.querySelector('#normal')
+const normalHover = document.querySelector('#normal')
 
-normal.addEventListener('click', startHover)
+normalHover.addEventListener('click', startHover)
 
 function startHover () {
     const items = document.querySelectorAll('.item');
@@ -84,10 +78,24 @@ function startHover () {
 const slider = document.querySelector('#grid-size');
 const output = document.querySelector('#output-size')
 slider.addEventListener('input', () => {
-    let text = '';
-    output.textContent = text //clear the last displayed value when changed into new
-    text = 'Grid size: ' + slider.value + " x " +  slider.value;
-    output.textContent += text;
+    generateGrid();
+
+    if (slider.value == 16) {
+        output.textContent = 'Small';
+    }else if (slider.value == 32) {
+        output.textContent = 'Medium';
+    }else if (slider.value == 48) {
+        output.textContent = 'Large';
+    }else{
+        output.textContent = 'Largest';
+    }
+
+    const allButtons = document.querySelectorAll('button')
+    allButtons.forEach((button) => {
+            allButtons.forEach((button) => {
+                button.classList.remove('clicked')
+            })
+    })
 })
 
 //button to clear everything up:
@@ -95,7 +103,6 @@ function clearGrid () {
     const items = document.querySelectorAll('.item')
     items.forEach((item) => {
         item.style.backgroundColor = 'white';
-        item.style.filter = 'brightness(' + 100 + '%)'
     })
 }
 const clearButton = document.querySelector('#clear')
@@ -106,7 +113,10 @@ clearButton.addEventListener('click', clearGrid)
 
 const randomButton = document.querySelector('#random');
 
-randomButton.addEventListener('click', makeRandom)
+randomButton.addEventListener('click', () => {
+    makeRandom();
+    highlightChoice(randomButton)
+})
 
 function makeRandom() {
 
@@ -116,36 +126,12 @@ function makeRandom() {
             let r = Math.round(Math.random() * 255);
             let g = Math.round(Math.random() * 255);
             let b = Math.round(Math.random() * 255);
-            item.style.filter = 'brightness(' + 100 + '%)'
             item.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
         })
     })
 }
 
-//Feature 2: Incrementally darken a color (not just black but an other options too)
-//global variable for brightness //ik it bad idea :(
-let brightness = 90;
-const darkenButton = document.querySelector('#increment-darken');
 
-darkenButton.addEventListener('click', () => {
-    darkenColor(brightness);
-
-});
-
-function darkenColor(brightness) {
-    const items = document.querySelectorAll('.item')
-    items.forEach((item) => {
-        item.addEventListener('mouseenter', () => {
-            item.backgroundColor = 'white';
-            item.style.filter = 'brightness(' + brightness + '%)';
-            brightness -= 10;
-            if (brightness < 0  ) {
-                brightness = 95;
-            }
-        })
-    })
-}
-//button.style.filter = 'brightness(' + 85 + '%)'
 
 //function for letting a user pick the color:
 const choose = document.querySelector('#choose-color');
@@ -157,7 +143,6 @@ function pickColor () {
 
     items.forEach((item) => {
         item.addEventListener('mouseenter', () => {
-            item.style.filter = 'brightness(' + 100 + '%)'
             item.style.backgroundColor = color.value;
         })
     })
@@ -168,5 +153,59 @@ function pickColor () {
 //Debug 2 when page loads, start with default of 16x16 gric and normal hover effect
 window.addEventListener('load', () => {
     generateGrid();
-    blackHover();
+    startHover();
 })
+
+//Feature for showing which choice is clicked
+const allButtons = document.querySelectorAll('button')
+    allButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+
+            allButtons.forEach((button) => {
+                button.classList.remove('clicked')
+            })
+            button.classList.toggle('clicked')
+        })
+    })
+
+//Feature Eraser
+const eraser = document.querySelector('#eraser')
+eraser.addEventListener('click', eraseGrid)
+
+function eraseGrid () {
+    const items = document.querySelectorAll('.item');
+
+    items.forEach((item) => {
+        item.addEventListener('mouseenter', () => {
+            item.style.backgroundColor = 'white'
+        })
+    })
+}
+
+//Feature: Christmas color trail
+const christmas = document.querySelector('#christmas');
+christmas.addEventListener('click', startChristmas)
+
+function startChristmas() {
+    const items = document.querySelectorAll('.item')
+    items.forEach((item) => {
+        item.addEventListener('mouseenter', () => {
+            //180 - 255 r
+            //0 - 147 g and b for redish colors
+            //0 - 144 r
+            //130 - 255 g  0 - 120 b for greenish
+            let greenOrRed = Math.round(Math.random() * 1);
+            if (greenOrRed == 0) {
+                let r = Math.round(Math.random() * (255-180) + 180);
+                let g = Math.round(Math.random() * (147-0) + 0);
+                let b = Math.round(Math.random() * (147-0) + 0);
+                item.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+            }else {
+                let r = Math.round(Math.random() * (147-0) + 0);
+                let g = Math.round(Math.random() * (255-130) + 130);
+                let b = Math.round(Math.random() * (120-0) + 0);
+                item.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+            }
+        })
+    })
+}

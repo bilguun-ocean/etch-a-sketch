@@ -2,12 +2,14 @@
     box-sizing: border-box;
     padding: 0px;
     margin: 0px;
+    font-family: "Lucida Console", "Courier New", monospace;
 }
 .grid {
     display: grid;
     grid-template-columns:repeat(16, 1fr);
     width: 500px;
     height: 500px;
+    box-shadow: 0 4px 8px 0 rgba(164, 162, 162, 0.2), 0 6px 20px 0 rgba(118, 101, 101, 0.19);
 }
 
 .grid-small {
@@ -15,7 +17,7 @@
     grid-template-columns:repeat(32, 1fr);
     width: 500px;
     height: 500px;
-    
+    box-shadow: 0 4px 8px 0 rgba(164, 162, 162, 0.2), 0 6px 20px 0 rgba(118, 101, 101, 0.19);
 }
 
 .grid-medium {
@@ -23,6 +25,7 @@
     grid-template-columns:repeat(48, 1fr);
     width: 500px;
     height: 500px;
+    box-shadow: 0 4px 8px 0 rgba(164, 162, 162, 0.2), 0 6px 20px 0 rgba(118, 101, 101, 0.19);
 }
 
 .grid-large {
@@ -30,11 +33,9 @@
     grid-template-columns:repeat(64, 1fr);
     width: 500px;
     height: 500px;
+        box-shadow: 0 4px 8px 0 rgba(164, 162, 162, 0.2), 0 6px 20px 0 rgba(118, 101, 101, 0.19);
 }
 
-.item {
-    border: 1px solid lightslategray;
-}
 
 /*styles*/
 body {
@@ -43,28 +44,32 @@ body {
     justify-content: center;
     align-items: center;
     gap: 2em;
-    background-color: rgb(225, 250, 248);
+    background-color: #8FDDE7;
 }
-
 button {
+    background: #B6E5D8;
     width: 80px;
-    padding: 6px
+    padding: 6px;
+    border-radius: 5px;
+    border: none;
 }
 
 h1 {
+    color: rgb(252, 80, 80);
     margin-top: 20px;
     font-size: 48px;
 }
 
 .interface {
     display: flex;
-    gap: 2em;
+    gap: 3em;
 }
 
 .options {
     display: flex;
     flex-direction: column;
-    gap: 1em    ;
+    gap: 1em;
+    align-items: center;
 }
 
 footer:any-link {
@@ -79,3 +84,25 @@ footer:any-link {
     margin-left: 5px
 }
 
+.color {
+    border: none;
+    height: 30px;
+    width: 60px;
+    padding: none;
+}
+
+.clicked {
+    filter: brightness(85%);
+}
+
+#grid-size {
+    width: 60px;
+
+}
+
+.size {
+    font-size: 19px;
+    font-weight: 700;
+    color: rgb(255, 101, 101)
+}
+ 
