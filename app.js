@@ -115,7 +115,6 @@ const randomButton = document.querySelector('#random');
 
 randomButton.addEventListener('click', () => {
     makeRandom();
-    highlightChoice(randomButton)
 })
 
 function makeRandom() {
